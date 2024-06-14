@@ -39,7 +39,7 @@ pipeline {
         
         always { 
             echo 'I will always say Hello again!'
-        
+            deletedir()
         }
         success { 
             echo 'I will run when pipeline is success'
