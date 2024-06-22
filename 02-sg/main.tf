@@ -76,8 +76,8 @@ resource "aws_security_group_rule" "db_backend" {
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
-  source_security_group_id = module.backend_sg_id # source is where you are getting traffic from
-  security_group_id = module.db_sg_id
+  source_security_group_id = module.backend.sg_id # source is where you are getting traffic from
+  security_group_id = module.db.sg_id
 }
 
 resource "aws_security_group_rule" "db_bastion" {
@@ -85,7 +85,7 @@ resource "aws_security_group_rule" "db_bastion" {
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
-  source_security_group_id = module.bastion_sg_id # source is where you are getting traffic from
+  source_security_group_id = module.bastion.sg_id # source is where you are getting traffic from
   security_group_id = module.db.sg_id
 }
 
@@ -213,6 +213,26 @@ resource "aws_security_group_rule" "bastion_public" {
   protocol          = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = module.bastion.sg_id
+}
+
+#added as part of Jenkins CICD
+resource "aws_security_group_rule" "backend_default_vpc" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["172.31.0.0/16"]
+  security_group_id = module.backend.sg_id
+}
+
+#added as part of Jenkins CICD
+resource "aws_security_group_rule" "frontend_default_vpc" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["172.31.0.0/16"]
+  security_group_id = module.frontend.sg_id
 }
 
 # not required, we can connect from VPN
