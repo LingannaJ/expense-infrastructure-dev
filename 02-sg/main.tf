@@ -76,8 +76,8 @@ resource "aws_security_group_rule" "db_backend" {
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
-  source_security_group_id = module.backend.sg_id # source is where you are getting traffic from
-  security_group_id = module.db.sg_id
+  source_security_group_id = module.backend_sg_id # source is where you are getting traffic from
+  security_group_id = module.db_sg_id
 }
 
 resource "aws_security_group_rule" "db_bastion" {
@@ -85,7 +85,7 @@ resource "aws_security_group_rule" "db_bastion" {
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
-  source_security_group_id = module.bastion.sg_id # source is where you are getting traffic from
+  source_security_group_id = module.bastion_sg_id # source is where you are getting traffic from
   security_group_id = module.db.sg_id
 }
 
