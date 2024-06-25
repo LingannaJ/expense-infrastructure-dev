@@ -51,3 +51,5 @@ resource "aws_ssm_parameter" "app_alb_listener_arn" {
   type  = "String"
   value = module.web_alb.sg_id
 }
+
+# app la
