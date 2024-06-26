@@ -96,7 +96,7 @@ resource "aws_launch_template" "backend" {
   image_id = aws_ami_from_instance.backend.id
   instance_initiated_shutdown_behavior = "terminate"
   instance_type = "t3.micro"
-  update_default_version = true # sets the latest version to default
+  update_default_version = true # sets the latest version to default ga
 
   vpc_security_group_ids = [data.aws_ssm_parameter.backend_sg_id.value]
 
