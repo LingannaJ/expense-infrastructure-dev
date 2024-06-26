@@ -1,4 +1,4 @@
-output "db_sg-id" {
-    value = module.db
-}
+# output "db_sg-id" {
+#     value = module.db
+# }
 
