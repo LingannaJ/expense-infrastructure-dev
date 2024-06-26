@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "shivdev-remote-state"
-    key    = "expense-dev-alb"
+    key    = "expense-dev-app-alb"
     region = "us-east-1"
     dynamodb_table = "mydynamoDB-lock"
   }
