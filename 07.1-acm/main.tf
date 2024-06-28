@@ -10,9 +10,7 @@ resource "aws_acm_certificate" "expense" {
   )
 }
 
-resource "aws_route53_zone" "my-hosted-zone_id" {
-  name = "shivdev.online"
-}
+
 
 resource "aws_route53_record" "expense" {
   for_each = {
