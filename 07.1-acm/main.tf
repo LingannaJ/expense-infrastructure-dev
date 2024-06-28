@@ -10,6 +10,10 @@ resource "aws_acm_certificate" "expense" {
   )
 }
 
+resource "aws_route53_zone" "my-hosted-zone_id" {
+  name = "shivdev.online"
+}
+
 resource "aws_route53_record" "expense" {
   for_each = {
     for dvo in aws_acm_certificate.expense.domain_validation_options : dvo.domain_name => {
